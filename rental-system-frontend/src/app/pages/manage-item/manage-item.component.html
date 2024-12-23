@@ -1,0 +1,55 @@
+<h1>Add Item form</h1>
+
+<div class="col-12">
+  <label for="name" class="form-label"
+    >Name <span class="text-body-secondary">(Optional)</span></label
+  >
+  <input
+    type="text"
+    class="form-control"
+    id="name"
+    [(ngModel)]="item.name"
+    placeholder="Ladder"
+  />
+</div>
+<div class="col-12">
+  <label for="name" class="form-label"
+    >Rental Per Day <span class="text-body-secondary">(Required)</span></label
+  >
+  <input
+    type="text"
+    class="form-control"
+    id="rentalPerDay"
+    [(ngModel)]="item.rentalPerDay"
+    placeholder="100"
+  />
+</div>
+<div class="col-12">
+  <label for="name" class="form-label"
+    >Fine Per Day <span class="text-body-secondary">(Required)</span></label
+  >
+  <input
+    type="text"
+    class="form-control"
+    [(ngModel)]="item.finePerDay"
+    id="finePerDay"
+    placeholder="100"
+  />
+</div>
+
+<div class="col-12">
+  <label for="name" class="form-label"
+    >Is Available <span class="text-body-secondary">(Required)</span></label
+  >
+  <input
+    type="text"
+    class="form-control"
+    id="rentalPerDay"
+    value="true"
+    disabled
+    placeholder="100"
+    [(ngModel)]="item.availability"
+  />
+</div>
+
+<button (click)="saveItem(item)">Submit</button>
