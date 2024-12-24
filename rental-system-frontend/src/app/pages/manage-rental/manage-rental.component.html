@@ -1,1 +1,124 @@
-<p>manage-rental works!</p>
+<div class="d-grid divContainer" style="grid-template-columns: repeat(2, 1fr)">
+  <div class="rentDet w-75">
+    <div class="col-12">
+      <label for="rentDate" class="form-label"
+        >Rental Date <span class="text-body-secondary">(Optional)</span></label
+      >
+      <input
+        type="date"
+        class="form-control"
+        id="rentDate"
+        [(ngModel)]="rental.rentalDate"
+        placeholder="mm/dd/yyyy"
+      />
+    </div>
+    <div class="col-12">
+      <label for="returnDate" class="form-label"
+        >Return Date <span class="text-body-secondary">(Optional)</span></label
+      >
+      <input
+        type="date"
+        class="form-control"
+        id="returnDate"
+        [(ngModel)]="rental.returnDate"
+        placeholder="mm/dd/yyyy"
+      />
+    </div>
+    <div class="col-12">
+      <label for="dueDate" class="form-label"
+        >Due Date <span class="text-body-secondary">(Optional)</span></label
+      >
+      <input
+        type="date"
+        class="form-control"
+        id="dueDate"
+        [(ngModel)]="rental.dueDate"
+        placeholder="mm/dd/yyyy"
+      />
+    </div>
+    <div class="col-12">
+      <label for="fine" class="form-label"
+        >Fine <span class="text-body-secondary">(Optional)</span></label
+      >
+      <input
+        type="text"
+        class="form-control"
+        id="fine"
+        [(ngModel)]="rental.fine"
+        placeholder="true"
+        disabled
+      />
+    </div>
+    <div class="col-12">
+      <label for="totalCost" class="form-label"
+        >Total Cost <span class="text-body-secondary">(Optional)</span></label
+      >
+      <input
+        type="text"
+        class="form-control"
+        id="totalCost"
+        [(ngModel)]="rental.totalCost"
+        placeholder="1000.00"
+      />
+    </div>
+  </div>
+  <div class="itemDet w-25">
+    <div class="d-flex position-relative w-100" role="search">
+      <input
+        class="form-control me-2"
+        type="search"
+        placeholder="Item ID"
+        aria-label="Search"
+        [(ngModel)]="id"
+      />
+      <button
+        class="btn btn-outline-success"
+        type="submit"
+        (click)="searchItem(id)"
+      >
+        Search
+      </button>
+    </div>
+    <div class="col-12">
+      <label for="itemId" class="form-label"
+        >Name <span class="text-body-secondary">(Optional)</span></label
+      >
+      <input
+        type="text"
+        class="form-control"
+        id="itemId"
+        [(ngModel)]="item.name"
+        placeholder="Ladder"
+      />
+    </div>
+    <div class="col-12">
+      <label for="qty" class="form-label"
+        >Quantity <span class="text-body-secondary">(Optional)</span></label
+      >
+      <input
+        type="text"
+        class="form-control"
+        id="qty"
+        [(ngModel)]="rentalDetail.qty"
+        (keyup)="setTotalItemCost()"
+        placeholder="3"
+      />
+    </div>
+    <div class="col-12">
+      <label for="totalItemCost" class="form-label"
+        >Total Item Cost
+        <span class="text-body-secondary">(Optional)</span></label
+      >
+      <input
+        type="text"
+        class="form-control"
+        id="itemId"
+        [(ngModel)]="rentalDetail.totalItemCost"
+        placeholder="5000.00"
+        disabled
+      />
+    </div>
+  </div>
+</div>
+
+<button (click)="confirm()">Pay</button>

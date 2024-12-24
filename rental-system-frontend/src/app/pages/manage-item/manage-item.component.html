@@ -1,5 +1,18 @@
 <h1>Add Item form</h1>
 
+<div class="d-flex w-50" role="search">
+  <input
+    class="form-control me-2"
+    type="search"
+    placeholder="Item ID"
+    aria-label="Search"
+    [(ngModel)]="id"
+  />
+  <button class="btn btn-outline-success" type="submit" (click)="search(id)">
+    Search
+  </button>
+</div>
+
 <div class="col-12">
   <label for="name" class="form-label"
     >Name <span class="text-body-secondary">(Optional)</span></label
@@ -52,4 +65,16 @@
   />
 </div>
 
-<button (click)="saveItem(item)">Submit</button>
+<button
+  class="btn btn-primary m-2"
+  style="margin-left: 400px"
+  (click)="saveItem(item)"
+>
+  Submit
+</button>
+
+<div class="col m-2">
+  <button class="btn btn-secondary m-2">Update</button>
+  <button class="btn btn-danger m-2" (click)="delete()">Delete</button>
+  <button class="btn btn-success m-2" [routerLink]="['/items']">Items</button>
+</div>

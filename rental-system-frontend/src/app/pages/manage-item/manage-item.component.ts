@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 import { NavbarComponent } from '../../common/navbar/navbar.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HardwareItem } from '../../model/HardwareItem';
 import { HttpClient } from '@angular/common/http';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-manage-item',
   standalone: true,
-  imports: [NavbarComponent, FormsModule, CommonModule],
+  imports: [RouterLink, NavbarComponent, FormsModule, CommonModule],
   templateUrl: './manage-item.component.html',
   styleUrl: './manage-item.component.css',
 })
@@ -34,5 +35,82 @@ export class ManageItemComponent {
         }
       });
     console.log(item);
+  }
+  public id: number = 0;
+
+  search(id: number) {
+    console.log(this.id);
+
+    this.http
+      .get<HardwareItem>(
+        `http://localhost:8080/item/search-by-id/?itemID=${this.id}`
+      )
+      .subscribe((data) => {
+        this.item = data;
+        console.log(data);
+      });
+  }
+
+  delete() {
+    if (this.id > 0) {
+      const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: 'btn btn-success',
+          cancelButton: 'btn btn-danger',
+        },
+        buttonsStyling: false,
+      });
+      swalWithBootstrapButtons
+        .fire({
+          title: 'Are you sure?',
+          text: "You won't be able to revert this!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Yes, delete it!',
+          cancelButtonText: 'No, cancel!',
+          reverseButtons: true,
+        })
+        .then((result) => {
+          if (result.isConfirmed) {
+            this.http
+              .delete(
+                'http://localhost:8080/item/delete-by-id/?itemID=' + this.id
+              )
+              .subscribe((data) => {
+                if (data) {
+                  swalWithBootstrapButtons.fire({
+                    title: 'Deleted!',
+                    text: 'Your file has been deleted.',
+                    icon: 'success',
+                  });
+                  this.id = 0;
+                  this.item = new HardwareItem(0, '', 0, 0, true);
+                } else {
+                  swalWithBootstrapButtons.fire({
+                    title: 'Error!',
+                    text: 'Your file did not delete.',
+                    icon: 'error',
+                  });
+                }
+              });
+          } else if (
+            /* Read more about handling dismissals below */
+            result.dismiss === Swal.DismissReason.cancel
+          ) {
+            swalWithBootstrapButtons.fire({
+              title: 'Cancelled',
+              text: 'Your imaginary file is safe :)',
+              icon: 'error',
+            });
+          }
+        });
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Insert Valid ID',
+        footer: '<a href="#">Why do I have this issue?</a>',
+      });
+    }
   }
 }
