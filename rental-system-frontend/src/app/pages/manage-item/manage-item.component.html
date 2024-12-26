@@ -8,7 +8,7 @@
     aria-label="Search"
     [(ngModel)]="id"
   />
-  <button class="btn btn-outline-success" type="submit" (click)="search(id)">
+  <button class="btn btn-outline-success" type="submit" (click)="search()">
     Search
   </button>
 </div>
@@ -74,7 +74,7 @@
 </button>
 
 <div class="col m-2">
-  <button class="btn btn-secondary m-2">Update</button>
+  <button class="btn btn-secondary m-2" (click)="updateItem()">Update</button>
   <button class="btn btn-danger m-2" (click)="delete()">Delete</button>
   <button class="btn btn-success m-2" [routerLink]="['/items']">Items</button>
 </div>

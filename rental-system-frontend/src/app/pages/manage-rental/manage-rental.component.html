@@ -1,124 +1,218 @@
-<div class="d-grid divContainer" style="grid-template-columns: repeat(2, 1fr)">
-  <div class="rentDet w-75">
-    <div class="col-12">
-      <label for="rentDate" class="form-label"
-        >Rental Date <span class="text-body-secondary">(Optional)</span></label
-      >
-      <input
-        type="date"
-        class="form-control"
-        id="rentDate"
-        [(ngModel)]="rental.rentalDate"
-        placeholder="mm/dd/yyyy"
-      />
+<div
+  class="d-grid mCont w-100"
+  style="margin-left: 200px; grid-template-columns: repeat(2, 1fr); gap: 40px"
+>
+  <div
+    class="d-grid divContainer w-100 m-2"
+    style="grid-template-columns: repeat(2, 1fr); gap: 10px"
+  >
+    <div class="rentDet w-40 m-3">
+      <div class="col-12">
+        <label for="rentDate" class="form-label"
+          >Rental Date
+          <span class="text-body-secondary">(Optional)</span></label
+        >
+        <input
+          type="date"
+          class="form-control"
+          id="rentDate"
+          [(ngModel)]="rental.rentalDate"
+          placeholder="mm/dd/yyyy"
+        />
+      </div>
+      <div class="col-12">
+        <label for="returnDate" class="form-label"
+          >Return Date
+          <span class="text-body-secondary">(Optional)</span></label
+        >
+        <input
+          type="date"
+          class="form-control"
+          id="returnDate"
+          [(ngModel)]="rental.returnDate"
+          placeholder="mm/dd/yyyy"
+        />
+      </div>
+      <div class="col-12">
+        <label for="dueDate" class="form-label"
+          >Due Date <span class="text-body-secondary">(Optional)</span></label
+        >
+        <input
+          type="date"
+          class="form-control"
+          id="dueDate"
+          [(ngModel)]="rental.dueDate"
+          placeholder="mm/dd/yyyy"
+        />
+      </div>
+      <div class="col-12">
+        <label for="fine" class="form-label"
+          >Fine <span class="text-body-secondary">(Optional)</span></label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="fine"
+          [(ngModel)]="rental.fine"
+          placeholder="true"
+          disabled
+        />
+      </div>
+      <div class="col-12">
+        <label for="totalCost" class="form-label"
+          >Total Cost <span class="text-body-secondary">(Optional)</span></label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="totalCost"
+          [(ngModel)]="rental.totalCost"
+          placeholder="1000.00"
+        />
+      </div>
     </div>
-    <div class="col-12">
-      <label for="returnDate" class="form-label"
-        >Return Date <span class="text-body-secondary">(Optional)</span></label
-      >
-      <input
-        type="date"
-        class="form-control"
-        id="returnDate"
-        [(ngModel)]="rental.returnDate"
-        placeholder="mm/dd/yyyy"
-      />
-    </div>
-    <div class="col-12">
-      <label for="dueDate" class="form-label"
-        >Due Date <span class="text-body-secondary">(Optional)</span></label
-      >
-      <input
-        type="date"
-        class="form-control"
-        id="dueDate"
-        [(ngModel)]="rental.dueDate"
-        placeholder="mm/dd/yyyy"
-      />
-    </div>
-    <div class="col-12">
-      <label for="fine" class="form-label"
-        >Fine <span class="text-body-secondary">(Optional)</span></label
-      >
-      <input
-        type="text"
-        class="form-control"
-        id="fine"
-        [(ngModel)]="rental.fine"
-        placeholder="true"
-        disabled
-      />
-    </div>
-    <div class="col-12">
-      <label for="totalCost" class="form-label"
-        >Total Cost <span class="text-body-secondary">(Optional)</span></label
-      >
-      <input
-        type="text"
-        class="form-control"
-        id="totalCost"
-        [(ngModel)]="rental.totalCost"
-        placeholder="1000.00"
-      />
+    <div class="itemDet w-35 m-3">
+      <div class="d-flex position-relative w-50" role="search">
+        <input
+          class="form-control me-2"
+          type="search"
+          placeholder="Item ID"
+          aria-label="Search"
+          [(ngModel)]="id"
+        />
+        <button
+          class="btn btn-outline-success"
+          type="submit"
+          (click)="searchItem(id)"
+        >
+          Search
+        </button>
+      </div>
+      <div class="col-12 w-75">
+        <label for="itemId" class="form-label"
+          >Name <span class="text-body-secondary">(Optional)</span></label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="itemId"
+          [(ngModel)]="item.name"
+          placeholder="Ladder"
+        />
+      </div>
+      <div class="col-12 w-75">
+        <label for="qty" class="form-label"
+          >Quantity <span class="text-body-secondary">(Optional)</span></label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="qty"
+          [(ngModel)]="qt"
+          (keyup)="setTotalItemCost(qt)"
+          placeholder="3"
+        />
+      </div>
+      <div class="col-12 w-75">
+        <label for="totalItemCost" class="form-label"
+          >Total Item Cost
+          <span class="text-body-secondary">(Optional)</span></label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="itemId"
+          [(ngModel)]="rentalDetail.totalItemCost"
+          placeholder="5000.00"
+          disabled
+        />
+      </div>
+      <button class="btn btn-success m-2" (click)="addToRent()">Add</button>
     </div>
   </div>
-  <div class="itemDet w-25">
-    <div class="d-flex position-relative w-100" role="search">
-      <input
-        class="form-control me-2"
-        type="search"
-        placeholder="Item ID"
-        aria-label="Search"
-        [(ngModel)]="id"
-      />
-      <button
-        class="btn btn-outline-success"
-        type="submit"
-        (click)="searchItem(id)"
+
+  <div id="cart" class="col-md-5 w-50">
+    <h4 class="d-flex justify-content-between align-items-center mb-3">
+      <span class="text-primary">Picked Items</span>
+      <span class="badge bg-primary rounded-pill">{{
+        rentalDetails.length
+      }}</span>
+    </h4>
+    <ul class="list-group mb-3 w-100">
+      <li
+        class="list-group-item d-flex justify-content-between lh-sm w-100"
+        *ngFor="let det of rentalDetails; index as i"
       >
-        Search
-      </button>
-    </div>
-    <div class="col-12">
-      <label for="itemId" class="form-label"
-        >Name <span class="text-body-secondary">(Optional)</span></label
-      >
-      <input
-        type="text"
-        class="form-control"
-        id="itemId"
-        [(ngModel)]="item.name"
-        placeholder="Ladder"
-      />
-    </div>
-    <div class="col-12">
-      <label for="qty" class="form-label"
-        >Quantity <span class="text-body-secondary">(Optional)</span></label
-      >
-      <input
-        type="text"
-        class="form-control"
-        id="qty"
-        [(ngModel)]="rentalDetail.qty"
-        (keyup)="setTotalItemCost()"
-        placeholder="3"
-      />
-    </div>
-    <div class="col-12">
-      <label for="totalItemCost" class="form-label"
-        >Total Item Cost
-        <span class="text-body-secondary">(Optional)</span></label
-      >
-      <input
-        type="text"
-        class="form-control"
-        id="itemId"
-        [(ngModel)]="rentalDetail.totalItemCost"
-        placeholder="5000.00"
-        disabled
-      />
+        <div>
+          <h6 class="my-0">ID: {{ det.itemId }}</h6>
+          <small class="text-body-secondary">qty: {{ itemName[i] }}</small>
+        </div>
+        <span class="text-body-secondary">tot= {{ det.totalItemCost }}</span>
+        <button class="btn btn-close w-25" (click)="removeFromCart(i, det)">
+          <i class="bi bi-x"></i>
+        </button>
+      </li>
+
+      <li class="list-group-item d-flex justify-content-between">
+        <span>Total (Rs. )</span>
+        <strong>{{ rental.totalCost }}</strong>
+      </li>
+    </ul>
+  </div>
+  <button
+    id="payBtn"
+    (click)="confirm()"
+    class="btn btn-light"
+    data-bs-toggle="modal"
+    data-bs-target="#exampleModal"
+  >
+    Pay
+  </button>
+</div>
+
+<div
+  class="modal fade"
+  id="exampleModal"
+  
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="d-grid" style="grid-template-columns: repeat(4, 1fr)">
+          <h6>Item Id</h6>
+          <h6>Item Name</h6>
+          <h6>Quantity</h6>
+          <h6>Total Item Cost</h6>
+        </div>
+        <div
+          class="d-grid mb-3"
+          style="grid-template-columns: repeat(4, 1fr)"
+          *ngFor="let item of cart.rentalDetails; index as i"
+        >
+          <strong> {{ item.itemId }}</strong>
+          <strong>{{ itemName[i] }}</strong>
+          <strong>{{ item.qty }}</strong>
+          <strong>{{ item.totalItemCost }}</strong>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary">Print Recipt</button>
+      </div>
     </div>
   </div>
 </div>
-
-<button (click)="confirm()">Pay</button>

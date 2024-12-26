@@ -25,20 +25,9 @@ export class ManageItemComponent {
   // availability: true,
   //  };
 
-  saveItem(item: HardwareItem) {
-    this.http
-      .post('http://localhost:8080/item/save', item)
-      .subscribe((data) => {
-        if (data) {
-          console.log(data);
-          alert('Success');
-        }
-      });
-    console.log(item);
-  }
   public id: number = 0;
 
-  search(id: number) {
+  search() {
     console.log(this.id);
 
     this.http
@@ -49,6 +38,43 @@ export class ManageItemComponent {
         this.item = data;
         console.log(data);
       });
+  }
+  private upd: HardwareItem = new HardwareItem(0, '', 0, 0, true);
+  updateItem() {
+    console.log(this.item.finePerDay.toString() + 'befor Update');
+    this.upd.itemID = this.id;
+    this.upd.name = this.item.name;
+    this.upd.rentalPerDay = this.item.rentalPerDay;
+    this.upd.finePerDay = this.item.finePerDay;
+    this.upd.availability = this.item.availability;
+    console.log(this.upd.availability + 'befor Update');
+    console.log(this.upd.itemID.toString() + 'befor Update');
+    console.log(this.upd.finePerDay.toString() + 'after Update');
+    this.http
+      .put('http://localhost:8080/item/update', this.upd)
+      .subscribe((data) => {
+        if (data) {
+          console.log(data);
+          this.id = 0;
+          this.item = new HardwareItem(0, '', 0, 0, true);
+          alert('Success');
+        }
+      });
+    console.log(this.upd.name.toString() + 'after Updated');
+  }
+
+  saveItem(item: HardwareItem) {
+    this.http
+      .post('http://localhost:8080/item/save', item)
+      .subscribe((data) => {
+        if (data) {
+          console.log(data);
+          this.id = 0;
+          this.item = new HardwareItem(0, '', 0, 0, true);
+          alert('Success');
+        }
+      });
+    console.log(item);
   }
 
   delete() {

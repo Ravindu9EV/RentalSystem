@@ -9,7 +9,7 @@ export class Rental{
     public totalCost:number;
     public rentalDetails:RentalDetail[];
 
-    constructor (rentID:number,rentalDate:string,returnDate:string,dueDate:string,fine:boolean,totalCost:number,rentalDetails:rentalDetail[]){
+    constructor (rentID:number,rentalDate:string,returnDate:string,dueDate:string,fine:boolean,totalCost:number,rentalDetails:RentalDetail[]){
         this.rentID=rentID;
         this.rentalDate=rentalDate;
         this.returnDate=returnDate;

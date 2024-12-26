@@ -1,0 +1,9 @@
+#payBtn:hover{
+    background-color: blueviolet;
+    color: aliceblue;
+}
+
+#payBtn{
+    color: blueviolet;
+    background-color: rgb(226, 189, 244);
+}

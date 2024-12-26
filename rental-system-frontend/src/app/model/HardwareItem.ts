@@ -1,29 +1,29 @@
 export class HardwareItem {
-  public itemId: number;
+  public itemID: number;
   public name: string;
   public rentalPerDay: number;
   public finePerDay: number;
   public availability: boolean;
 
   constructor(
-    itemId: number,
+    itemID: number,
     name: string,
     rentalPerDay: number,
     finePerDay: number,
     availability: boolean
   ) {
-    this.itemId = itemId;
+    this.itemID = itemID;
     this.name = name;
     this.rentalPerDay = rentalPerDay;
     this.finePerDay = finePerDay;
     this.availability = availability;
   }
 
-  public setItemId(itemId: number) {
-    this.itemId = itemId;
+  public setItemID(itemID: number) {
+    this.itemID = itemID;
   }
-  public getItemId(): number {
-    return this.itemId;
+  public getItemID(): number {
+    return this.itemID;
   }
   public setName(name: string) {
     this.name = name;
