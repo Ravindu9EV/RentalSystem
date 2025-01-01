@@ -1,0 +1,14 @@
+body{
+    background-image: url('../../../../images/item.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+}
+h1{
+    color: rgb(6, 87, 89);
+}
+.container{
+    margin-top: 10px;
+    background-color: rgba(250, 235, 215, 0.526);
+}

@@ -7,3 +7,12 @@
     color: blueviolet;
     background-color: rgb(226, 189, 244);
 }
+
+.divContainer{
+    background-color: rgba(250, 235, 215, 0.67);
+    
+}
+
+#cart{
+    background-color: rgba(62, 155, 155, 0.67);
+}

@@ -116,7 +116,7 @@ export class ManageRentalComponent {
     this.total += detail.totalItemCost;
     this.rental.totalCost =
       this.rental.totalCost + Number.parseInt(detail.totalItemCost.toString());
-
+    this.cart.totalCost=this.rental.totalCost;
     //this.rental.totalCost = total;
     console.log(this.rental.totalCost + 'yo');
     console.log(this.rentalDetail.qty + 'qt');

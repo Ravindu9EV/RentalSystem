@@ -8,7 +8,7 @@
   >
     <div class="rentDet w-40 m-3">
       <div class="col-12">
-        <label for="rentDate" class="form-label"
+        <label for="rentDate"  class="form-label"
           >Rental Date
           <span class="text-body-secondary">(Optional)</span></label
         >
@@ -133,7 +133,7 @@
 
   <div id="cart" class="col-md-5 w-50">
     <h4 class="d-flex justify-content-between align-items-center mb-3">
-      <span class="text-primary">Picked Items</span>
+      <span class="text-danger-emphasis">Picked Items</span>
       <span class="badge bg-primary rounded-pill">{{
         rentalDetails.length
       }}</span>
@@ -173,7 +173,6 @@
 <div
   class="modal fade"
   id="exampleModal"
-  
   tabindex="-1"
   aria-labelledby="exampleModalLabel"
   aria-hidden="true"
@@ -207,11 +206,20 @@
           <strong>{{ item.totalItemCost }}</strong>
         </div>
       </div>
+      <div class="row">
+        <p>
+          -----------------------------------------------------------------------------
+        </p>
+        <strong style="text-align: center"
+          >Total : Rs. {{ cart.totalCost }}</strong
+        >
+        <p style="text-align: center">Thank You</p>
+      </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
           Close
         </button>
-        <button type="button" class="btn btn-primary">Print Recipt</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Print Recipt</button>
       </div>
     </div>
   </div>

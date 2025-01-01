@@ -1,80 +1,83 @@
-<h1>Add Item form</h1>
 
-<div class="d-flex w-50" role="search">
-  <input
-    class="form-control me-2"
-    type="search"
-    placeholder="Item ID"
-    aria-label="Search"
-    [(ngModel)]="id"
-  />
-  <button class="btn btn-outline-success" type="submit" (click)="search()">
-    Search
+<div class="container">
+  <h1 style="text-align: center;">Add Item form</h1>
+  <div class="d-flex w-50" role="search">
+    <input
+      class="form-control me-2"
+      type="search"
+      placeholder="Item ID"
+      aria-label="Search"
+      [(ngModel)]="id"
+    />
+    <button class="btn btn-outline-success" type="submit" (click)="search()">
+      Search
+    </button>
+  </div>
+  
+  <div class="col-12">
+    <label for="name" class="form-label"
+      >Name <span class="text-body-secondary">(Optional)</span></label
+    >
+    <input
+      type="text"
+      class="form-control"
+      id="name"
+      [(ngModel)]="item.name"
+      placeholder="Ladder"
+    />
+  </div>
+  <div class="col-12">
+    <label for="name" class="form-label"
+      >Rental Per Day <span class="text-body-secondary">(Required)</span></label
+    >
+    <input
+      type="text"
+      class="form-control"
+      id="rentalPerDay"
+      [(ngModel)]="item.rentalPerDay"
+      placeholder="100"
+    />
+  </div>
+  <div class="col-12">
+    <label for="name" class="form-label"
+      >Fine Per Day <span class="text-body-secondary">(Required)</span></label
+    >
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="item.finePerDay"
+      id="finePerDay"
+      placeholder="100"
+    />
+  </div>
+  
+  <div class="col-12">
+    <label for="name" class="form-label"
+      >Is Available <span class="text-body-secondary">(Required)</span></label
+    >
+    <input
+      type="text"
+      class="form-control"
+      id="rentalPerDay"
+      value="true"
+      disabled
+      placeholder="100"
+      [(ngModel)]="item.availability"
+    />
+  </div>
+  
+  <button
+    class="btn btn-primary m-2"
+    style="margin-left: 400px"
+    (click)="saveItem()"
+  >
+    Submit
   </button>
-</div>
-
-<div class="col-12">
-  <label for="name" class="form-label"
-    >Name <span class="text-body-secondary">(Optional)</span></label
-  >
-  <input
-    type="text"
-    class="form-control"
-    id="name"
-    [(ngModel)]="item.name"
-    placeholder="Ladder"
-  />
-</div>
-<div class="col-12">
-  <label for="name" class="form-label"
-    >Rental Per Day <span class="text-body-secondary">(Required)</span></label
-  >
-  <input
-    type="text"
-    class="form-control"
-    id="rentalPerDay"
-    [(ngModel)]="item.rentalPerDay"
-    placeholder="100"
-  />
-</div>
-<div class="col-12">
-  <label for="name" class="form-label"
-    >Fine Per Day <span class="text-body-secondary">(Required)</span></label
-  >
-  <input
-    type="text"
-    class="form-control"
-    [(ngModel)]="item.finePerDay"
-    id="finePerDay"
-    placeholder="100"
-  />
-</div>
-
-<div class="col-12">
-  <label for="name" class="form-label"
-    >Is Available <span class="text-body-secondary">(Required)</span></label
-  >
-  <input
-    type="text"
-    class="form-control"
-    id="rentalPerDay"
-    value="true"
-    disabled
-    placeholder="100"
-    [(ngModel)]="item.availability"
-  />
-</div>
-
-<button
-  class="btn btn-primary m-2"
-  style="margin-left: 400px"
-  (click)="saveItem(item)"
->
-  Submit
-</button>
-
-<div class="col m-2">
-  <button class="btn btn-secondary m-2" (click)="updateItem()">Update</button>
-  <button class="btn btn-danger m-2" (click)="delete()">Delete</button>
-  <button class="btn btn-success m-2" [routerLink]="['/items']">Items</button>
+  
+  <div class="col m-2">
+    <button class="btn btn-secondary m-2" (click)="updateItem()">Update</button>
+    <button class="btn btn-danger m-2" (click)="delete()">Delete</button>
+    <button class="btn btn-success m-2" [routerLink]="['/items']">Items</button>
+  </div>
+  
 </div>

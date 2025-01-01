@@ -63,9 +63,9 @@ export class ManageItemComponent {
     console.log(this.upd.name.toString() + 'after Updated');
   }
 
-  saveItem(item: HardwareItem) {
+  saveItem() {
     this.http
-      .post('http://localhost:8080/item/save', item)
+      .post('http://localhost:8080/item/save', this.item)
       .subscribe((data) => {
         if (data) {
           console.log(data);
@@ -74,7 +74,7 @@ export class ManageItemComponent {
           alert('Success');
         }
       });
-    console.log(item);
+    console.log(this.item);
   }
 
   delete() {
